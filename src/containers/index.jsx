@@ -18,7 +18,7 @@ import styles from './index.scss';
 export default class V2exTopics extends React.Component {
 
   static propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
     dispatch: PropTypes.func,
   }
 

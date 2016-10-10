@@ -5,7 +5,7 @@ const api = new Router({
   prefix: '/api'
 });
 
-const hostname = 'www.v2ex.com';
+const hostname = 'https://www.v2ex.com';
 const result = {
   data: 'This is a Api page',
 }

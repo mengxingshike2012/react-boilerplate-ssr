@@ -12,7 +12,7 @@ export default function configure(initialState) {
   const enhancer = applyMiddleware(
     routerMiddleware(hashHistory),
     sagaMiddleware,
-    createLogger(),
+    // createLogger(),
   );
   const store = createStore(rootReducer, initialState, enhancer);
   sagaMiddleware.run(rootSaga);

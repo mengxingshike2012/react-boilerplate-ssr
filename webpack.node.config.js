@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextWebPackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
@@ -14,6 +15,12 @@ module.exports = {
   debug: true,
   devtool: 'eval',
 
+  target: 'node',
+  // otherwise, __dirname will be changed to /
+  node: {
+    __filename: true,
+    __dirname: true
+  },
   // keep node_module paths out of the bundle
   externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).reduce(function (ext, mod) {
     ext[mod] = 'commonjs ' + mod
@@ -30,7 +37,12 @@ module.exports = {
       },
       {
         test: /\.scss/,
-        loaders: ['ignore'],
+        loader: ExtractTextWebPackPlugin.extract(
+            'style',
+            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+            'autoprefixer?{browsers:["last 2 version"]}',
+            'sass?outputStyle=expanded'
+        ),
       },
     ],
   },
@@ -39,5 +51,6 @@ module.exports = {
     root: path.resolve('./src'),
   },
   plugins: [
+    new ExtractTextWebPackPlugin('styles.css')
   ],
 };

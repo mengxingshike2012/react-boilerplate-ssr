@@ -17,10 +17,10 @@ app.use(bodyParser());
 
 app.use(json());
 
+app.use(views(path.join(__dirname, '../src'), {extension: 'ejs'}));
+
 // koa-static not support koa2, use koa-convert for help
 app.use(convert(serve(path.join(__dirname, '../dist'))));
-
-app.use(views(path.join(__dirname, '../src'), {extension: 'ejs'}));
 
 app.use(api.routes());
 

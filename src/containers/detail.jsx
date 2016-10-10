@@ -15,7 +15,7 @@ export default class TopicDetail extends React.Component {
   static propTypes = {
     params: PropTypes.object,
     data: PropTypes.object,
-    dispatch: PropTypes.object,
+    dispatch: PropTypes.func,
   }
 
   static loadData(option) {
@@ -23,7 +23,7 @@ export default class TopicDetail extends React.Component {
       return option.store.dispatch(fetchTopicDetail(option.props.params.id));
     } else {
       const id = this.props.params.id;
-      this.props.dispatch(fetchTopicDetail());
+      this.props.dispatch(fetchTopicDetail(id));
     }
   }
 
