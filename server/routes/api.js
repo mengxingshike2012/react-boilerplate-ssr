@@ -19,8 +19,9 @@ api
     ctx.body = data;
   })
   .get('/topics/:id', async ctx => {
-    const path = ctx.url.replace('/\/api/', '');
-    const data = await fetch(hostname+'/topics/show?id='+ctx.params.id).then(res => res.json());
+    const url = hostname+'/api/topics/show.json?id='+ctx.params.id;
+    console.log(url);
+    const data = await fetch(url).then(res => res.json());
     ctx.body = data;
   });
 

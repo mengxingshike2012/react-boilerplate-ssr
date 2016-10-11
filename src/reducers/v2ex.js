@@ -19,7 +19,7 @@ export default handleActions({
     ...state, isLoading: true,
   }),
   'fetchTopicDetail/end': (state, action) => ({
-    ...state, detail: action.payload,
+    ...state, detail: action.payload, isLoading: false,
   }),
 
 }, initialState);
