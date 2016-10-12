@@ -7,7 +7,7 @@ const api = new Router({
 
 const hostname = 'https://www.v2ex.com';
 const result = {
-  data: 'This is a Api page',
+  data: 'This is Api page',
 }
 api
   .get('/test', ctx => {

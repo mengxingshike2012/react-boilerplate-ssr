@@ -5,7 +5,9 @@ const ExtractTextWebPackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
-  entry: './server/app.js',
+  entry: [
+    './server/app.js'
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'server.js',

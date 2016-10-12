@@ -9,7 +9,7 @@ import views from 'koa-views';
 import convert from 'koa-convert';
 // serve static files
 import serve from 'koa-static';
-// 如果使用了webpack __dirname会有bug, 需正确设置，见 webpack.config
+// 如果使用了webpack __dirname会被修改 需正确设置，见 webpack.config
 import path from 'path';
 
 import api from './routes/api';
