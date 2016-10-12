@@ -14,7 +14,7 @@ const serverRender = new Router();
 function getReduxPromise(props, store) {
   const comp = props.components[props.components.length - 1].WrappedComponent;
   return comp.loadData ?
-    comp.loadData({store, props}) :
+    comp.loadData({ store, props }) :
     Promise.resolve();
 }
 function _match(location) {
@@ -23,9 +23,9 @@ function _match(location) {
       if (error) {
         return reject(error);
       }
-      resolve({redirectionLocation, renderProps});
-    })
-  })
+      resolve({ redirectionLocation, renderProps });
+    });
+  });
 }
 
 serverRender.all('*', async (ctx) => {
@@ -34,22 +34,22 @@ serverRender.all('*', async (ctx) => {
   const routes = createRoutes(history);
 
   try {
-    const {redirectionLocation, renderProps} = await _match({routes, location: ctx.url});
+    const { redirectionLocation, renderProps } = await _match({ routes, location: ctx.url });
     if (renderProps) {
       // 这是有问题的， 因为action 是有关联的, request, success, failure
-      const result = await getReduxPromise(renderProps, store);
+      await getReduxPromise(renderProps, store);
 
       const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
       const html = ReactDOMServer.renderToString(
-          <Provider store={store}>
-            {<RouterContext {...renderProps} />}
-          </Provider>
+        <Provider store={store}>
+          {<RouterContext {...renderProps} />}
+        </Provider>
       );
-      await ctx.render('index', {html, reduxState});
+      await ctx.render('index', { html, reduxState });
     }
   } catch (e) {
     console.log(e);
   }
-})
+});
 
 export default serverRender;

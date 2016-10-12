@@ -3,9 +3,10 @@ import React, {
 } from 'react';
 import { connect } from 'react-redux';
 import css from 'react-css-modules';
+import { fetchTopicDetail } from 'actions/v2ex';
+
 import styles from './index.scss';
 
-import { fetchTopicDetail } from 'actions/v2ex';
 
 @connect(state => ({
   data: state.v2ex.detail,
@@ -17,6 +18,7 @@ export default class TopicDetail extends React.Component {
     params: PropTypes.object,
     data: PropTypes.object,
     dispatch: PropTypes.func,
+    isLoading: PropTypes.bool,
   }
 
   static loadData(option) {

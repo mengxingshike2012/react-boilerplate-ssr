@@ -21,7 +21,7 @@ app.use(bodyParser());
 // pretty json
 app.use(json());
 // 设置静态模板位置
-app.use(views(path.join(__dirname, '../src'), {extension: 'ejs'}));
+app.use(views(path.join(__dirname, '../src'), { extension: 'ejs' }));
 // koa-static not support koa2, use koa-convert for help
 app.use(convert(serve(path.join(__dirname, '../dist'))));
 
