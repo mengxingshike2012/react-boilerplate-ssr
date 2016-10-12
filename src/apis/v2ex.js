@@ -4,6 +4,5 @@ export async function fetchHotTopics() {
 
 export async function fetchTopicDetail(id) {
   const datas = await fetch(`http://localhost:3000/api/topics/${id}`).then(res => res.json());
-  console.log(datas);
   return datas[0];
 }

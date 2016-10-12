@@ -36,7 +36,8 @@ serverRender.all('*', async (ctx) => {
   try {
     const {redirectionLocation, renderProps} = await _match({routes, location: ctx.url});
     if (renderProps) {
-      await getReduxPromise(renderProps, store);
+      // 这是有问题的， 因为action 是有关联的, request, success, failure
+      const result = await getReduxPromise(renderProps, store);
 
       const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
       const html = ReactDOMServer.renderToString(
@@ -44,7 +45,6 @@ serverRender.all('*', async (ctx) => {
             {<RouterContext {...renderProps} />}
           </Provider>
       );
-
       await ctx.render('index', {html, reduxState});
     }
   } catch (e) {

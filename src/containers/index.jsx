@@ -30,7 +30,7 @@ export default class V2exTopics extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     V2exTopics.loadData.call(this);
   }
 

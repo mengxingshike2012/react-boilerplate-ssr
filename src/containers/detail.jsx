@@ -28,7 +28,7 @@ export default class TopicDetail extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     TopicDetail.loadData.call(this);
   }
 
