@@ -25,9 +25,9 @@ module.exports = {
         test: /\.scss/,
         loader: ExtractTextWebPackPlugin.extract(
             'style',
-            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+            ['css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
             'autoprefixer?{browsers:["last 2 version"]}',
-            'sass?outputStyle=expanded'
+            'sass?outputStyle=expanded']
         ),
       },
     ],
@@ -37,6 +37,6 @@ module.exports = {
     root: path.resolve('./src'),
   },
   plugins: [
-    new ExtractTextWebPackPlugin('styles.css')
+    new ExtractTextWebPackPlugin('styles.css'),
   ],
 };
